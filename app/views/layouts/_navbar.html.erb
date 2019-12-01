@@ -13,9 +13,9 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Sign up
-            <%= icon('fas', 'user-plus') %>
-          </a>
+          <%= link_to signup_path, class: "nav-link" do %>
+            Sign up <%= icon('fas', 'user-plus') %>
+          <% end %>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Log in

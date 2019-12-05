@@ -6,4 +6,21 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   validates :password, presence: true, confirmation: true
   has_secure_password
+  
+  def get_department()
+    if self.department_id
+      return Department.find(self.department_id)
+    else
+      return Department.find(1)
+    end
+  end
+  
+  def get_manager()
+    if self.manager_id
+      return User.find(self.manager_id)
+    else
+      # if the user themself is manager, display their own name in the page
+      return self
+    end
+  end
 end

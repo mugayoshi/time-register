@@ -4,13 +4,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @department = Department.find(@user.department_id)
-    if @user.manager_id
-      @manager = User.find(@user.manager_id)
-    else
-      # if the user themself is manager, display their own name in the page
-      @manager = @user
-    end
+
   end
 
   def new

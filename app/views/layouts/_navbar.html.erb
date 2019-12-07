@@ -7,21 +7,47 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Home
-             <%= icon('fas', 'home') %>
-          </a>
-        </li>
-        <li class="nav-item">
-          <%= link_to signup_path, class: "nav-link" do %>
-            Sign up <%= icon('fas', 'user-plus') %>
+        <% if logged_in? %>
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home
+               <%= icon('fas', 'home') %>
+            </a>
+          </li>
+          <% if current_user.manager? %>
+           <li class="nav-item">
+              <%= link_to root_url, class: "nav-link" do %>
+                Approve <%= icon('far', 'check-square') %>
+              <% end %>
+            </li> 
+          <% else %>
+            <li class="nav-item">
+              <%= link_to root_url, class: "nav-link" do %>
+                Register <%= icon('fas', 'cash-register') %>
+              <% end %>
+            </li>
           <% end %>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Log in
-            <%= icon('fas', 'sign-in-alt') %>
-          </a>
-        </li>
+          <li class="nav-item">
+            <%= link_to user_path(current_user.id), class: "nav-link" do %>
+              Profile <%= icon('far', 'user') %>
+            <% end %>
+          </li>  
+          <li class="nav-item">
+            <%= link_to logout_path, method: :delete, class: "nav-link" do %>
+              Log out <%= icon('fas', 'sign-out-alt') %>
+            <% end %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to signup_path, class: "nav-link" do %>
+              Sign up <%= icon('fas', 'user-plus') %>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to login_path, class: "nav-link" do %>
+              Log in <%= icon('fas', 'sign-in-alt') %>
+            <% end %>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>

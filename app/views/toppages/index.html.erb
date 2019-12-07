@@ -1,6 +1,8 @@
-<div class="container-fluid">
+<% if logged_in? %>
+  <h1>Welcome, <%= current_user.name %>!</h1>
+  <div class="container-fluid">
   <div class="row">
-    <div class="col-xs-6 card" style="width: 15rem;">
+    <div class="col-sm-6 card" style="width: 15rem;">
       <h5 class="header">
         Paid Holiday chart <%= icon('far', 'calendar') %>
       </h5>
@@ -8,7 +10,7 @@
         <div class="card-text">1 day April</div>
       </div>
     </div>
-    <div class="col-xs-6 card" style="width: 15rem;">
+    <div class="col-sm-6 card" style="width: 15rem;">
       <h5 class="header">
         Message for you <%= icon('fas', 'inbox') %>
       </h5>
@@ -20,7 +22,7 @@
   </div>
   
   <div class="row">
-    <div class="col-xs-6 card" style="width: 15rem;">
+    <div class="col-sm-6 card" style="width: 15rem;">
       <h5 class="header">
         Overtime result <%= icon('far', 'clock') %>
       </h5>
@@ -28,7 +30,7 @@
         <div class="card-text">4 hours in April</div>
       </div>
     </div>
-    <div class="col-xs-6 card" style="width: 15rem;">
+    <div class="col-sm-6 card" style="width: 15rem;">
        <h5 class="header">
         Overall status <%= icon('far', 'clipboard') %>
       </h5>
@@ -38,4 +40,14 @@
     </div>
   </div>
 </div>
+<% else %>
+  <div class="center jumbotron">
+    <div class="text-center">
+      <h1>Welcome to Time Register!</h1>
+      <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
+    </div>
+  </div>
+<% end %>
+
+
 

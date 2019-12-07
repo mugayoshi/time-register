@@ -23,4 +23,12 @@ class User < ApplicationRecord
       return self
     end
   end
+  
+  def manager?
+    if self.manager_flag
+      return true
+    else
+      return false
+    end
+  end
 end

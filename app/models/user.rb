@@ -7,6 +7,8 @@ class User < ApplicationRecord
   validates :password, presence: true, confirmation: true
   has_secure_password
   
+  has_many :work_records
+  
   def get_department()
     if self.department_id
       return Department.find(self.department_id)

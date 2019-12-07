@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191201084356) do
+ActiveRecord::Schema.define(version: 20191207044656) do
 
   create_table "departments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -32,6 +32,22 @@ ActiveRecord::Schema.define(version: 20191201084356) do
     t.index ["manager_id"], name: "index_users_on_manager_id", using: :btree
   end
 
+  create_table "work_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.date     "worked_on"
+    t.time     "started_at"
+    t.time     "ended_at"
+    t.integer  "employee_id_id"
+    t.integer  "manager_id_id"
+    t.boolean  "holiday"
+    t.integer  "status"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["employee_id_id"], name: "index_work_records_on_employee_id_id", using: :btree
+    t.index ["manager_id_id"], name: "index_work_records_on_manager_id_id", using: :btree
+  end
+
   add_foreign_key "users", "departments"
   add_foreign_key "users", "users", column: "manager_id"
+  add_foreign_key "work_records", "users", column: "employee_id_id"
+  add_foreign_key "work_records", "users", column: "manager_id_id"
 end
